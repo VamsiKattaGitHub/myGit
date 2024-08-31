@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demon slayer </title>
+<style>
+  button{
+    display: block;
+    border-radius: 50%;
+    margin-top: 20px;
+    margin-left: 20px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.95s;
+  }
+  img{
+    width:100px;
+    height:100px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  button:hover{
+    transform: scale(1.1);
+  }
+</style>
+</head>
+<body>
+  <input type="text">
+   <button id="tan-btn" onclick="api()" value="Tanjiro Kamado"> <img src="https://pnghq.com/wp-content/uploads/pnghq.com-tanjiro-png-1481-download.png" alt=""> </button>
+  <h1 id="name"></h1>
+  <p id ="para"></p>
+</body>
+
+<script>
+  const btn = document.getElementById("tan-btn")
+ async function api(){
+    const fetchApi = await fetch("https://demon-slayer-api-9c6c.onrender.com/api/");
+    const data = await fetchApi.json();
+    console.log(data);
+    if(btn.value == data[0].name)
+    {
+      document.getElementById("name").innerHTML = `Name:${data[0].name}`
+      document.getElementById("para").innerHTML = `Race:${data[0].race} <br>
+      Affiliation:${data[0].affiliation} <br>
+      Skill:${data[0].skill} <br>
+      Quote:${data[0].quote} <br>
+      `
+    }
+    else{
+      document.getElementById("name").innerHTML = "Not Found"
+    }
+  }
+
+  // api()
+</script>
+</html>
